@@ -1,11 +1,8 @@
 #include "main.h"
 /**
- * _isalpha -showa 1 if the input is a
- * letter another cases , show 90
- *
- * @c: character in ascii code
- *
- * Return:1 for letter. 0 for the rest
+ * _islower - check if character is lowercase.
+ * @c: character to check if it islowercase.
+ * Return: 0 if lowercase, 1 if not.
  */
 
 int _islower(int c)
