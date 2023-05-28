@@ -1,9 +1,13 @@
 #include "main.h"
 /**
- * _islower - check if character is lowercase.
- * @c: character to check if it islowercase.
- * Return: 0 if lowercase, 1 if not.
- */ 
+ * _isalpha - isoloalph
+ * @c: Description of parameter x
+ *
+ * Description: isoloalpha
+ * section header: Section description)*
+ * Return: Description of the returned value
+ */
+
 int _isalpha(int c)
 {
 	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
