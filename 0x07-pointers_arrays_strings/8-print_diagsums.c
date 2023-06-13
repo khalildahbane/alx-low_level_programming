@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_diagsums - fills memory with a constant byte.
@@ -10,7 +9,8 @@
 
 void print_diagsums(int *a, int size)
 {
-	int sum1, sum2 = 0;
+	int sum1 = 0;
+	int sum2 = 0;
 	int i;
 
 	for (i = 0; i < size; i++)
