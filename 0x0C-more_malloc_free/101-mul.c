@@ -1,74 +1,93 @@
+#include "main.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#define ERR_MSG "Error"
 /**
- * _atoi -> Convert string to integer
- *
- * @s: Input
- *
- * Return: Integer Converted
+ * digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
+ * Return: 0 if a non-digit is found, 1 otherwise
  */
-
-int _atoi(char *s)
+int digit(char *s)
 {
-	int i;
-	int sin;
-	unsigned int digit;
+	int x = 0;
 
-	i = 0;
-	sin = 1;
-	digit = 0;
+	while (s[x])
+	{
+		if (s[x] < '0' || s[x] > '9')
+			return (0);
+		x++;
+	}
+	return (1);
+}
+/**
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
 	while (s[i] != '\0')
 	{
-		if (s[i] == '-')
-			sin *= -1;
-		else if (s[i] >= '0' && s[i] <= '9')
-		{
-			digit = (digit * 10) + (s[i] - '0');
-		}
-		else if (digit > 0)
-			break;
 		i++;
 	}
-	return (digit * sin);
+	return (i);
 }
-
 /**
- * main -> Entry
- *
- * @ac: Number Args
- * @av: Array String 2D
- *
- * Return: Depend Condition
+ * errors - handles errors for main
  */
-
-int main(int ac, char **av)
+void errors(void)
 {
-	int i;
-	int j;
-	unsigned int mul;
-	int num1;
-	int num2;
+	printf("Error\n");
+	exit(98);
+}
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ * Return: always 0 (Success)
+ */
+int main(int argc, char *argv[])
+{
+	char *s1, *s2;
+	int ll1, ll2, ll, i, carry, dd1, dd2, *reslt, j = 0;
 
-	if (ac != 3)
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !digit(s1) || !digit(s2))
+		errors();
+	ll1 = _strlen(s1);
+	ll2 = _strlen(s2);
+	ll = ll1 + ll2 + 1;
+	reslt = malloc(sizeof(int) * ll);
+	if (!reslt)
+		return (1);
+	for (i = 0; i <= ll1 + ll2; i++)
+		reslt[i] = 0;
+	for (ll1 = ll1 - 1; ll1 >= 0; ll1--)
 	{
-		printf("Error\n");
-		exit(98);
-	}
-	for (i = 1; i < ac; i++)
-	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		dd1 = s1[ll1] - '0';
+		carry = 0;
+		for (ll2 = _strlen(s2) - 1; ll2 >= 0; ll2--)
 		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-			{
-				printf("Error\n");
-				exit(98);
-			}
+			dd2 = s2[ll2] - '0';
+			carry += reslt[ll1 + ll2 + 1] + (dd1 * dd2);
+			reslt[ll1 + ll2 + 1] = carry % 10;
+			carry /= 10;
 		}
+		if (carry > 0)
+			reslt[ll1 + ll2 + 1] += carry;
 	}
-	num1 = _atoi(av[1]);
-	num2 = _atoi(av[2]);
-	mul = num1 * num2;
-	printf("%u\n", mul);
+	for (i = 0; i < ll - 1; i++)
+	{
+		if (reslt[i])
+			j = 1;
+		if (j)
+			_putchar(reslt[i] + '0');
+	}
+	if (!j)
+		_putchar('0');
+	_putchar('\n');
+	free(reslt);
 	return (0);
 }
