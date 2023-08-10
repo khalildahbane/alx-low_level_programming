@@ -1,8 +1,7 @@
-#include<stdlib.h>
-#include"main.h"
+#include <stdlib.h>
+#include "main.h"
 
 /**
- *
  * free_grid -> Frees 2 dimensional Array Allocated :)
  *
  * @grid: Input Grid
