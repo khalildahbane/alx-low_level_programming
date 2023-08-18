@@ -11,19 +11,11 @@
  * Return: Adds
  */
 
-/**
- * op_add -> Add a to b :)
- *
- * @a: First Input
- * @b: Second Input
- *
- * Return: Adds
- */
-
 int op_add(int a, int b)
 {
 	return (a + b);
 }
+
 /**
  * op_sub -> Sub a to b
  *
